@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Korean</string>
+    <string name="textview">Practice Korean!</string>
+    <string name="words">Words</string>
+    <string name="grammar">Grammar</string>
+    <string name="hello">Hello!</string>
+    <string name="korean_practice">%s</string>
+    <string name="blank">nothing works</string>
+    <string name="prompt">Start practicing now!</string>
+    <string name="button_enter">enter</string>
+
+<!--RecyclerView Example strings-->
+    <!-- Words       -->
+    <string name="word1">1가다</string>
+    <string name="word2">2일어나다</string>
+    <string name="word3">3만들다</string>
+    <string name="word4">4자다</string>
+    <string name="word5">5공부하다</string>
+    <!-- Grammar   -->
+    <string name="grammar_point1">었/았다</string>
+    <string name="grammar_point2">거든요</string>
+    <string name="grammar_point3">~려고 하다</string>
+    <string name="grammar_point4">ㄹ 거예요</string>
+    <string name="grammar_point5">~고 있다</string>
+    <!-- Sentences    -->
+    <string name="sentence1">나는 집으로 가요</string>
+    <string name="sentence2">오늘 아침에 일찍 일어났거든요. 그래서 너무 피곤해요. 오늘 아침에 일찍 일어났거든요. 그래서 너무 피곤해요. 오늘 아침에 일찍 일어났거든요. 그래서 너무 피곤해요. 오늘 아침에 일찍 일어났거든요. 그래서 너무 피곤해요.</string>
+    <string name="sentence3">저는 오늘 케이크를 만들려고 했는데 재료가 없었습니다.</string>
+    <string name="sentence4">오늘 밤에 꼭 잘 거예요.</string>
+    <string name="sentence5">저는 공부하고 있다.</string>
+</resources>
