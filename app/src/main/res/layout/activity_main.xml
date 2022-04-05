@@ -7,6 +7,19 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-light"
+        android:text="@string/textview"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/divider_1"/>
+
+    <TextView
         android:id="@+id/item_word"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,6 +40,46 @@
         app:layout_constraintTop_toTopOf="@+id/item_word" />
 
 
+    <View
+        android:id="@+id/divider_1"
+        android:layout_width="1dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="24dp"
+        android:background="#ccc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@id/divider_2"/>
+
+    <ImageView
+        android:id="@+id/item_grammar_down_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_down"
+        app:layout_constraintBottom_toBottomOf="@+id/item_grammar"
+        app:layout_constraintStart_toEndOf="@+id/item_grammar"
+        app:layout_constraintTop_toTopOf="@+id/item_grammar" />
+
+    <TextView
+        android:id="@+id/item_grammar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/grammar"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/divider_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/divider_1"
+        app:layout_constraintTop_toTopOf="@+id/divider_1" />
+
+    <View
+        android:id="@+id/divider_2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="24dp"
+        android:background="#ccc"
+        app:layout_constraintTop_toBottomOf="@id/divider_1"
+        app:layout_constraintBottom_toTopOf="@id/item_practice_input"/>
+
     <EditText
         android:id="@+id/item_practice_input"
         android:layout_width="match_parent"
@@ -41,15 +94,8 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider_2" />
-
-    <View
-        android:id="@+id/divider_2"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="24dp"
-        android:background="#ccc"
-        app:layout_constraintTop_toBottomOf="@id/divider_1" />
+        app:layout_constraintTop_toBottomOf="@+id/divider_2"
+        app:layout_constraintBottom_toTopOf="@+id/recycle_view"/>
 
     <Button
         android:id="@+id/button"
@@ -60,48 +106,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/item_practice_input" />
-
-    <TextView
-        android:id="@+id/item_grammar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/grammar"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/divider_1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/divider_1"
-        app:layout_constraintTop_toTopOf="@+id/divider_1" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/item_grammar_down_arrow"
-        android:src="@drawable/ic_arrow_down"
-        app:layout_constraintBottom_toBottomOf="@+id/item_grammar"
-        app:layout_constraintStart_toEndOf="@+id/item_grammar"
-        app:layout_constraintTop_toTopOf="@+id/item_grammar" />
-
-    <View
-        android:id="@+id/divider_1"
-        android:layout_width="1dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="24dp"
-        android:background="#ccc"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="sans-serif-light"
-        android:text="@string/textview"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 
     <FrameLayout
@@ -120,35 +124,6 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </FrameLayout>
 
-<!--    Code before I put in the recyclerView-->
-<!--    <com.google.android.material.card.MaterialCardView-->
-<!--        android:id="@+id/card"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_margin="8dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/button">-->
-
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="vertical"-->
-<!--            android:padding="16dp">-->
-
-<!--            &lt;!&ndash; Title, secondary and supporting text &ndash;&gt;-->
-<!--            <TextView-->
-<!--                android:id="@+id/outputText"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textAppearance="?attr/textAppearanceHeadline6"-->
-<!--                tools:text="Hello" />-->
-
-<!--        </LinearLayout>-->
-
-<!--    </com.google.android.material.card.MaterialCardView>-->
 
 
 

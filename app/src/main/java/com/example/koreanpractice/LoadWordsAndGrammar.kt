@@ -1,16 +1,18 @@
 package com.example.koreanpractice
 
 import android.content.Context
+import android.util.Log
+import com.example.koreanpractice.databinding.ActivityMainBinding
 import com.google.gson.Gson
+import model.ListGrammarModel
 import model.ListWordModel
-import viewModifier
 import java.io.InputStream
 import java.lang.Exception
 
-
+private lateinit var binding: ActivityMainBinding
 
 class LoadWordsAndGrammar {
-    fun loadWordJson(context: Context): String?{
+    fun loadWordJson(context: Context) {
         var input: InputStream? = null
         var jsonString: String
 
@@ -27,20 +29,25 @@ class LoadWordsAndGrammar {
 
             // Create a json String
             jsonString = String(buffer)
-            return jsonString
+            val loadedWordList = Gson().fromJson<ListWordModel>(
+                jsonString,
+                ListWordModel::class.java
+            )
+            wordList = loadedWordList
+            Log.d("fromLoadWordsAndGrammar", "${wordList}")
         } catch (ex: Exception) {
             ex.printStackTrace()
         } finally {
             // Must close the stream
             input?.close()
         }
-        return null
+        return
     }
 
-    fun loadGrammarJson(context: viewModifier): String?{
+    fun loadGrammarJson(context: Context) {
         var input: InputStream? = null
         var jsonString: String
-
+        Log.d("loadGrammarJson", "has fired.")
         try {
             input = context.assets.open("grammar.json")
 
@@ -54,15 +61,42 @@ class LoadWordsAndGrammar {
 
             // Create a json String
             jsonString = String(buffer)
-            return jsonString
+            Log.d("loadGrammarJson", "This is before loadedGrammarList")
+            val loadedGrammarList = Gson().fromJson<ListGrammarModel>(
+                jsonString,
+                ListGrammarModel::class.java
+            )
+            Log.d("loadGrammarJson", "This is after loadedGrammarList")
+            grammarList = loadedGrammarList
+            Log.d("loadGrammarJson", "The current value of grammarList is ${grammarList}")
         } catch (ex: Exception) {
             ex.printStackTrace()
         } finally {
             // Must close the stream
             input?.close()
         }
-        return null
+        return
     }
+
+    var grammarList: ListGrammarModel? = null
+
+    var wordList: ListWordModel? = null
+
+//    val start = 0
+//    val grammarEnd = grammarList.data.size
+//    val wordEnd = wordList.data.size
+//    val wordView = binding.itemWord.text
+//    var grammarView = binding.itemGrammar.text
+//
+//    fun rand(start: Int, end: Int): Int {
+//        require(start <= end) { "Illegal Argument" }
+//        return (start..end).random()
+//    }
+//    val randomNumber = rand(start, grammarEnd)
+//
+//    fun getGrammarDef() {
+//        grammarView = grammarList.data[randomNumber].grammar
+//    }
 
 }
 
