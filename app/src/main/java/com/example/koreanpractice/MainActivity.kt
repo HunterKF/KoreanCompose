@@ -71,7 +71,13 @@ class MainActivity : AppCompatActivity() {
     data class GrammarData(var grammar: String, var def: String, var exampleSentence: String)
     private fun returnRandomGrammar(item: ListGrammarModel): GrammarData {
         Log.d ("returnRandomGrammar", "The function has fired. The passed parameter is ${item}")
-        val randomNumber = rand(item.data.size)
+        var randomNumber = rand(item.data.size)
+        Log.d ("returnRandomGrammar", "The function has fired. The index is ${item.data.size} and the random number was ${randomNumber}")
+
+        if (randomNumber === item.data.size) {
+            randomNumber -= 1
+            Log.d ("returnGramTooBig", "The number was too big. The new random number is ${randomNumber}")
+        }
         val grammar = item.data[randomNumber].grammar
         val def = item.data[randomNumber].def
         val exampleSentence = item.data[randomNumber].exampleSentence
@@ -84,10 +90,12 @@ class MainActivity : AppCompatActivity() {
     /*Get random word and use it in the changeWordView function*/
     data class WordData(var word: String, var def: String)
     private fun returnRandomWord(item: ListWordModel): WordData {
-        Log.d ("returnRandomGrammar", "The function has fired. The passed parameter is ${item}")
+        Log.d ("returnRandomWord", "The function has fired. The passed parameter is ${item}")
         var randomNumber = rand(item.data.size)
+        Log.d ("returnRandomWord", "The function has fired. The index is ${item.data.size} and the random number was ${randomNumber}")
         if (randomNumber === item.data.size) {
             randomNumber -= 1
+            Log.d ("returnWordTooBig", "The number was too big. The new random number is ${randomNumber}")
         }
         val word = item.data[randomNumber].word
         val def = item.data[randomNumber].def
