@@ -45,27 +45,75 @@ class MainActivity : AppCompatActivity() {
         /* This improves performance*/
         recyclerView.setHasFixedSize(false)
 
-        binding.button.setOnClickListener { getSentence() }
+
 //        binding.practiceInput.setOnKeyListener { view, keyCode, _ -> handleKeyEvent(view, keyCode) }
+        val grammar = loadGrammar()
 
-        val loadWords = LoadWordsAndGrammar()
-        fun loadGrammar(): ListGrammarModel? {
-            val grammar = loadWords.grammarList
-            loadWords.loadGrammarJson(applicationContext)
-            Log.d("randomWord", "${grammar?.data?.size}")
-            return grammar
-        }
-        fun loadWord(): ListWordModel? {
-            val word = loadWords.wordList
-            loadWords.loadWordJson(applicationContext)
-            Log.d("randomGrammar", "${word?.data?.get(9)?.def}")
 
-            return word
-        }
+        changeGrammarView(returnRandomGrammar(grammar))
+
+        val word = loadWord()
+        changeWordView(returnRandomWord(word!!))
+        Log.d ("wordValue", "This is the value of word is ${word}")
+        binding.button.setOnClickListener { onClickFunctions(word, grammar) }
+
+
 
     }
+    private val loadWords = LoadWordsAndGrammar()
+    private fun loadGrammar(): ListGrammarModel {
+        loadWords.loadGrammarJson(applicationContext)
+        val grammar = loadWords.grammarList
+        Log.d("randomGrammar", "Random grammar is ${grammar}")
+        return grammar!!
+    }
+    /*Get random grammar and use it in the changeGrammarView function*/
+    data class GrammarData(var grammar: String, var def: String, var exampleSentence: String)
+    private fun returnRandomGrammar(item: ListGrammarModel): GrammarData {
+        Log.d ("returnRandomGrammar", "The function has fired. The passed parameter is ${item}")
+        val randomNumber = rand(item.data.size)
+        val grammar = item.data[randomNumber].grammar
+        val def = item.data[randomNumber].def
+        val exampleSentence = item.data[randomNumber].exampleSentence
+        return GrammarData(grammar, def, exampleSentence)
+    }
 
-    private fun loadGrammar() {
+    private fun changeGrammarView(item: GrammarData) {
+        binding.itemGrammar.text = item.grammar
+    }
+    /*Get random word and use it in the changeWordView function*/
+    data class WordData(var word: String, var def: String)
+    private fun returnRandomWord(item: ListWordModel): WordData {
+        Log.d ("returnRandomGrammar", "The function has fired. The passed parameter is ${item}")
+        var randomNumber = rand(item.data.size)
+        if (randomNumber === item.data.size) {
+            randomNumber -= 1
+        }
+        val word = item.data[randomNumber].word
+        val def = item.data[randomNumber].def
+        return WordData(word, def)
+    }
+
+    private fun changeWordView(item: WordData) {
+        binding.itemWord.text = item.word
+    }
+
+    private fun rand(end: Int): Int {
+        val start = 0
+        require(start <= end) { "Illegal Argument" }
+        return (start..end).random()
+    }
+
+
+
+    private fun loadWord(): ListWordModel? {
+        loadWords.loadWordJson(applicationContext)
+        val word = loadWords.wordList
+        Log.d("randomWord", "${word?.data?.get(9)?.def}")
+
+        return word!!
+    }
+    private fun loadGramar() {
 
     }
     private fun getSentence() {
@@ -82,6 +130,12 @@ class MainActivity : AppCompatActivity() {
 
         this.dataSource.cards.add(PracticeCard(wordInField, grammarInField, stringInField))
 
+    }
+
+    fun onClickFunctions(itemWord: ListWordModel, itemGrammar: ListGrammarModel) {
+        getSentence()
+        changeWordView(returnRandomWord(itemWord))
+        changeGrammarView(returnRandomGrammar(itemGrammar))
     }
 
     //    Function to make a random number using variables

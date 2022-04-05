@@ -82,21 +82,7 @@ class LoadWordsAndGrammar {
 
     var wordList: ListWordModel? = null
 
-//    val start = 0
-//    val grammarEnd = grammarList.data.size
-//    val wordEnd = wordList.data.size
-//    val wordView = binding.itemWord.text
-//    var grammarView = binding.itemGrammar.text
 //
-//    fun rand(start: Int, end: Int): Int {
-//        require(start <= end) { "Illegal Argument" }
-//        return (start..end).random()
-//    }
-//    val randomNumber = rand(start, grammarEnd)
-//
-//    fun getGrammarDef() {
-//        grammarView = grammarList.data[randomNumber].grammar
-//    }
 
 }
 
