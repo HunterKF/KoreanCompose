@@ -14,10 +14,10 @@
         android:fontFamily="sans-serif-light"
         android:text="@string/textview"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/divider_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/divider_1"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/item_word"
@@ -46,10 +46,10 @@
         android:layout_height="20dp"
         android:layout_marginTop="24dp"
         android:background="#ccc"
+        app:layout_constraintBottom_toTopOf="@id/divider_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintBottom_toTopOf="@id/divider_2"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ImageView
         android:id="@+id/item_grammar_down_arrow"
@@ -77,8 +77,8 @@
         android:layout_height="1dp"
         android:layout_marginTop="24dp"
         android:background="#ccc"
-        app:layout_constraintTop_toBottomOf="@id/divider_1"
-        app:layout_constraintBottom_toTopOf="@id/item_practice_input"/>
+        app:layout_constraintBottom_toTopOf="@id/guideline2"
+        app:layout_constraintTop_toBottomOf="@id/divider_1" />
 
     <EditText
         android:id="@+id/item_practice_input"
@@ -92,17 +92,18 @@
         android:scrollHorizontally="false"
         android:textAlignment="center"
         android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider_2"
-        app:layout_constraintBottom_toTopOf="@+id/recycle_view"/>
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="200dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="@string/button_enter"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/item_practice_input" />
@@ -110,8 +111,9 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="390dp"
-        app:layout_constraintTop_toBottomOf="@+id/button"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/guideline3"
+        app:layout_constraintBottom_toTopOf="@id/guideline4"
         tools:context=".MainActivity"
         tools:layout_editor_absoluteX="0dp">
 
@@ -124,7 +126,26 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </FrameLayout>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="112dp" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="283dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.99589604" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
