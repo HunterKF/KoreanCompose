@@ -1,11 +1,13 @@
 package com.example.koreanpractice
 
 import adapter.ItemAdapter
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -45,17 +47,16 @@ class MainActivity : AppCompatActivity() {
         /* This improves performance*/
         recyclerView.setHasFixedSize(false)
 
-
-//        binding.practiceInput.setOnKeyListener { view, keyCode, _ -> handleKeyEvent(view, keyCode) }
+//        Loads the lists
         val grammar = loadGrammar()
-
-
-        changeGrammarView(returnRandomGrammar(grammar))
-
         val word = loadWord()
+//        Calls words onCreateH
+        changeGrammarView(returnRandomGrammar(grammar))
         changeWordView(returnRandomWord(word!!))
-        Log.d ("wordValue", "This is the value of word is ${word}")
-        binding.button.setOnClickListener { onClickFunctions(word, grammar) }
+
+        binding.itemPracticeInput.setOnKeyListener { view, keyCode, _ -> handleKeyEvent(view, keyCode,word, grammar) }
+
+
 
 
 
@@ -121,16 +122,14 @@ class MainActivity : AppCompatActivity() {
 
         return word!!
     }
-    private fun loadGramar() {
 
-    }
     private fun getSentence() {
 
         Log.d("getSentence", "has been activated")
 
         val wordInField = binding.itemWord.text.toString()
         val grammarInField = binding.itemGrammar.text.toString()
-        val stringInField = binding.itemPracticeInput.text.toString()
+        var stringInField = binding.itemPracticeInput.text.toString()
 
         if (stringInField == null) {
             return
@@ -139,14 +138,22 @@ class MainActivity : AppCompatActivity() {
         this.dataSource.cards.add(PracticeCard(wordInField, grammarInField, stringInField))
 
     }
-
-    fun onClickFunctions(itemWord: ListWordModel, itemGrammar: ListGrammarModel) {
-        getSentence()
-        changeWordView(returnRandomWord(itemWord))
-        changeGrammarView(returnRandomGrammar(itemGrammar))
+    /*on ENTER key, calls the functions*/
+    private fun handleKeyEvent(view: View, keyCode: Int, itemWord: ListWordModel, itemGrammar: ListGrammarModel): Boolean {
+        Log.d ("handleKeyEvent", "handleKeyEvent has fired.")
+        if (keyCode == KeyEvent.KEYCODE_ENTER) {
+            getSentence()
+            changeWordView(returnRandomWord(itemWord))
+            changeGrammarView(returnRandomGrammar(itemGrammar))
+            Log.d ("handleKeyEvent", "the if statement in handleKeyEvent has fired.")
+            // Hide the keyboard
+            val inputMethodManager =
+                getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+            return true
+        }
+        return false
     }
-
-    //    Function to make a random number using variables
 
 
     // call loadGrammarJson when the activity starts, so that the instance var has all the words loaded already
@@ -155,41 +162,5 @@ class MainActivity : AppCompatActivity() {
     // use the returned word
 
     //    Uses rand() to get a word from JSON
-
-    private fun randomWord(item: String) {
-        val item = ""
-
-
-    }
-//    private fun newWord(): String {
-//        val loadContent = LoadWordsAndGrammar()
-//        val wordModel = loadContent.
-//
-//        var viewWord = ""
-//        val start = 0
-//        val end = wordModel.data.size
-//        val randomNumber = rand(start, end)
-//
-//
-//        viewWord = wordModel.data[randomNumber].word
-//        Log.d("newWord", "${viewWord}")
-//
-//        Log.d("newWord", "Size: ${wordModel.data.size}")
-//        Log.d("newWord", "Data: ${wordModel.data[1].def}")
-//
-//        Log.d("Rand()", "${rand(start, end)}")
-//        return viewWord
-//    }
-
-
-
-    private fun handleKeyEvent(view: View, keyCode: Int): Boolean {
-        if (keyCode == KeyEvent.KEYCODE_ENTER) {
-            getSentence()
-            return true
-        }
-        return false
-    }
-
 
 }
