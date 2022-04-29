@@ -3,6 +3,9 @@ package model
 import com.google.gson.annotations.SerializedName
 
 class ListWordModel {
-    @SerializedName("data")
-    var data: ArrayList<WordCard> = ArrayList()
+    @SerializedName("dataGrammar")
+    var dataGrammar: ArrayList<GrammarCard> = ArrayList()
+
+    @SerializedName("dataWord")
+    var dataWord: ArrayList<WordCard> = ArrayList()
 }

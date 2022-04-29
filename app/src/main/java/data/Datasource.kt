@@ -5,7 +5,6 @@ import model.PracticeCard
 class Datasource {
 
     val cards = mutableListOf<PracticeCard>(
-//        PracticeCard("Hello", "it's me.", "Who are you?")
     )
 
 
@@ -18,5 +17,6 @@ class Datasource {
     fun addCard(word: String, grammar: String, sentence: String) {
         var newCard = PracticeCard(word, grammar, sentence)
     }
+
 
 }
